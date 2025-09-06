@@ -1,0 +1,138 @@
+---
+layout: base.njk
+title: Kontakt
+permalink: /kontakt/
+---
+<section id="main" class="container">
+
+  <section class="box special">
+    <header class="major">
+      <h2>Humanitarna udruga Adonis</h2>
+      <p>Udruga za unapređenje kvalitete življenja osoba s poteškoćama i bez odgovarajuće roditeljske skrbi</p>
+    </header>
+    <ul class="simple">
+      <li>📍 Adresa: obala pomoraca 77, Vranjic, Solin, Hrvatska</li>
+      <li>📱 Mobitel: <a href="tel:+385955779190">+385 95 577 91 90</a></li>
+      <li>📧 E-mail: <a href="mailto:udruga.adonis@gmail.com">udruga.adonis@gmail.com</a></li>
+    </ul>
+  </section>
+
+  <section class="box">
+    <header class="major">
+      <h3>Kontaktni obrazac</h3>
+    </header>
+    <form method="post" action="https://formspree.io/f/your-id-here">
+      <div class="row gtr-50 gtr-uniform">
+        <div class="col-6 col-12-mobilep">
+          <input type="text" name="ime" id="ime" placeholder="Ime i prezime" required />
+        </div>
+        <div class="col-6 col-12-mobilep">
+          <input type="email" name="email" id="email" placeholder="E-mail adresa" required />
+        </div>
+        <div class="col-6 col-12-mobilep">
+          <input type="text" name="telefon" id="telefon" placeholder="Kontakt telefon" />
+        </div>
+        <div class="col-6 col-12-mobilep">
+          <select name="predmet" id="predmet" required>
+            <option value="">— Odaberite predmet poruke —</option>
+            <option>Prijava člana</option>
+            <option>Terapije</option>
+            <option>Volontiranje</option>
+            <option>Donacija</option>
+            <option>Projekti</option>
+            <option>Suradnja</option>
+            <option>Ostalo</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <textarea name="poruka" id="poruka" placeholder="Vaša poruka" rows="6" required></textarea>
+        </div>
+        <div class="col-12">
+          <ul class="actions special">
+            <li><input type="submit" value="Pošalji" class="primary" /></li>
+          </ul>
+        </div>
+      </div>
+    </form>
+    <p class="small">👉 Poruka će biti poslana na: <a href="mailto:ivandzal7@gmail.com">udruga.adonis@gmail.com</a></p>
+  </section>
+<!-- Spinning Wheel / Iz medija -->
+<section id="iz-medija" class="box special">
+  <header class="major">
+    <h3>Iz medija — izdvojeno</h3>
+    <p>Tri priče — zavrti krug i klikni za detalje</p>
+  </header>
+
+<section id="iz-medija" class="box special">
+  <header class="major">
+    <h3>Iz medija — izdvojeno</h3>
+    <p>Tri priče — klikni sliku za detalje</p>
+  </header>
+
+  <div class="carousel" data-interval="4000">
+    <!-- SLIDE 1 -->
+    <a class="slide is-active"
+       href="https://dalmatinskiportal.hr/vijesti/vatrena-ljubav-savrseni-dan--sa--splitskim-vatrogascima/168539"
+       target="_blank" rel="noopener">
+      <img src="{{ '/images/mediji/vatrena-ljubav.jpg' | url }}" alt="Vatrena ljubav — Dalmatinski portal" />
+      <span class="caption">Vatrena ljubav — Dalmatinski portal</span>
+    </a>
+
+    <!-- SLIDE 2 -->
+    <a class="slide"
+       href="https://www.24sata.hr/news/edukativno-druzenje-kod-vatrogasaca-jvp-a-zagreb-naucio-sam-gasiti-pozar-1044142"
+       target="_blank" rel="noopener">
+      <img src="{{ '/images/mediji/edukativno-druzenje.webp' | url }}" alt="Edukativno druženje — 24sata" />
+      <span class="caption">Edukativno druženje — 24sata</span>
+    </a>
+
+    <!-- SLIDE 3 -->
+    <a class="slide"
+       href="https://magazin.hrt.hr/price-iz-hrvatske/down-11626039"
+       target="_blank" rel="noopener">
+      <img src="{{ '/images/mediji/hrt-magazin.jpg' | url }}" alt="Priče iz Hrvatske — HRT" />
+      <span class="caption">Priče iz Hrvatske — HRT</span>
+    </a>
+  </div>
+
+  <!-- Buttons -->
+  <ul class="actions special" style="margin-top: 0.75rem">
+    <li><button class="button small prev" type="button">‹</button></li>
+    <li><button class="button small next" type="button">›</button></li>
+  </ul>
+</section>
+
+
+</section>
+
+<script>
+(function() {
+  const section = document.getElementById('iz-medija');
+  if (!section) return;
+
+  const slides = section.querySelectorAll('.slide');
+  const prevBtn = section.querySelector('.prev');
+  const nextBtn = section.querySelector('.next');
+
+  let index = 0;
+
+  function show(i) {
+    slides[index].classList.remove('is-active');
+    index = (i + slides.length) % slides.length;
+    slides[index].classList.add('is-active');
+  }
+
+  nextBtn.addEventListener('click', () => show(index + 1));
+  prevBtn.addEventListener('click', () => show(index - 1));
+
+  // autoplay
+  const interval = parseInt(section.querySelector('.carousel').dataset.interval, 10) || 4000;
+  let timer = setInterval(() => show(index + 1), interval);
+
+  section.addEventListener('mouseenter', () => clearInterval(timer));
+  section.addEventListener('mouseleave', () => {
+    timer = setInterval(() => show(index + 1), interval);
+  });
+})();
+</script>
+
