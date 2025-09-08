@@ -6,5 +6,6 @@ module.exports = function (eleventyConfig) {
     dir: { input: ".", includes: "_includes", output: "_site" },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
+    pathPrefix: process.env.PATH_PREFIX || "/",
   };
 };
