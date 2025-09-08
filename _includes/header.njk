@@ -10,6 +10,10 @@
     </ul>
   </nav>
 </header>
+
+{# Show the default page banner on all pages EXCEPT the homepage #}
+{% if page.url != '/' and title %}
 <section id="banner" class="alt">
   <h2>{{ title }}</h2>
 </section>
+{% endif %}
