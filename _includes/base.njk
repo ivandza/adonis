@@ -1,9 +1,14 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="hr">
   <head>
     <title>{{ title }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Make all relative URLs resolve under the pathPrefix -->
+    <base href="{{ '/' | url }}">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | url }}">
     <noscript><link rel="stylesheet" href="{{ '/assets/css/noscript.css' | url }}"></noscript>
   </head>
@@ -20,7 +25,8 @@
 
     </div>
 
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <!-- Scripts (prefix-aware) -->
+    <script src="{{ '/assets/js/jquery.min.js' | url }}"></script>
+    <script src="{{ '/assets/js/main.js' | url }}"></script>
   </body>
 </html>
