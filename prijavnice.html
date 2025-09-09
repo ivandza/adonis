@@ -27,7 +27,7 @@ permalink: /prijavnice/
         <div class="col-8 col-12-mobilep">
           <select id="pdf-select" required>
             <option value="">— Odaberite prijavnicu —</option>
-            <!-- options injected by JS -->
+            <!-- JS injects options here -->
           </select>
         </div>
         <div class="col-4 col-12-mobilep">
@@ -41,62 +41,34 @@ permalink: /prijavnice/
   <section class="box">
     <header class="major"><h3>Izravne poveznice</h3></header>
     <ul id="pdf-links" class="alt">
-      <!-- links injected by JS -->
+      <!-- JS injects links here -->
     </ul>
   </section>
 </section>
 
 <script>
 (function() {
-  // Mapa: stvarni filename -> lijepi naziv za web
-  // (Datoteke moraju biti u /assets/pdfs/prijavnice/ s istim imenima kao ovdje lijevo)
+  // Base path for PDFs (GitHub Pages safe)
+  var BASE = "{{ '/assets/pdfs/prijavnice/' | url }}";
+
+  // Clean filenames + friendly labels
   var FILES = [
-    {
-      file: "PRIJAVNICA_i_mi_možemo_biti_vatrogasci (1)_250826_205117.pdf",
-      label: "Prijavnica / I ja želim biti vatrogasac"
-    },
-    {
-      file: "PRIJAVNICA_Ljetni_dani_mladih_downića (2)_250826_205033.pdf",
-      label: "Prijavnica / Ljetni dani mladih Downića"
-    },
-    {
-      file: "PRIJAVNICA_osjetimo_smijehom (1)_250826_205137.pdf",
-      label: "Prijavnica / Osjetimo smijehom"
-    },
-    {
-      file: "PRIJAVNICA_za_članstvo_i_terapije (1)_250826_205055.pdf",
-      label: "Prijavnica / Članstvo i terapije"
-    },
-    {
-      file: "PRIJAVNICA_za_edukaciju_odgojno_obrazovnih_djelatn_250826_205216.pdf",
-      label: "Prijavnica / Edukacija odgojno-obrazovnih djelatnika"
-    },
-    {
-      file: "PRIJAVNICA_za_volontiranje_250826_205323.pdf",
-      label: "Prijavnica / Volontiranje"
-    },
-    {
-      file: "PRIJAVNICA-_za_donatore_250826_205157.pdf",
-      label: "Prijavnica / Donatori"
-    },
-    {
-      file: "PRIJAVNICA-_za_korisnika_-pomozimo_zajedno_250826_205254.pdf",
-      label: "Prijavnica / Za korisnika — Pomozimo zajedno"
-    },
-    {
-      file: "PRIJAVNICA-_za_poslodavce__-pružimo_šansu_250826_205308.pdf",
-      label: "Prijavnica / Za poslodavce — Pružimo šansu"
-    }
+    { file: "PRIJAVNICA-za-donatore.pdf", label: "Prijavnica / Donatori" },
+    { file: "PRIJAVNICA-za-korisnika-pomozimo-zajedno.pdf", label: "Prijavnica / Za korisnika — Pomozimo zajedno" },
+    { file: "PRIJAVNICA-za-poslodavce-pruzimo-sansu.pdf", label: "Prijavnica / Za poslodavce — Pružimo šansu" },
+    { file: "PRIJAVNICA-ljetni-dani-mladih-downica.pdf", label: "Prijavnica / Ljetni dani mladih Downića" },
+    { file: "PRIJAVNICA-i-mi-mozemo-biti-vatrogasci.pdf", label: "Prijavnica / I ja želim biti vatrogasac" },
+    { file: "PRIJAVNICA-osjetimo-smijehom.pdf", label: "Prijavnica / Osjetimo smijehom" },
+    { file: "PRIJAVNICA-za-clanstvo-i-terapije.pdf", label: "Prijavnica / Članstvo i terapije" },
+    { file: "PRIJAVNICA-za-edukaciju-odgojno-obrazovnih-djelatnika.pdf", label: "Prijavnica / Edukacija odgojno-obrazovnih djelatnika" },
+    { file: "PRIJAVNICA-za-volontiranje.pdf", label: "Prijavnica / Volontiranje" }
   ];
 
-  var BASE = "{{ '/assets/pdfs/prijavnice/' | url }}"; // prefix-safe base path
-
   function buildUrl(filename) {
-    // ostavljamo originalni naziv – samo ga pravilno enkodiramo
     return encodeURI(BASE + filename);
   }
 
-  // Dropdown
+  // Populate dropdown
   var select = document.getElementById("pdf-select");
   FILES.forEach(function(item){
     var opt = document.createElement("option");
@@ -105,22 +77,22 @@ permalink: /prijavnice/
     select.appendChild(opt);
   });
 
-  // Links list
+  // Populate links list
   var list = document.getElementById("pdf-links");
   FILES.forEach(function(item){
     var li = document.createElement("li");
     var a = document.createElement("a");
     a.href = buildUrl(item.file);
     a.textContent = item.label;
-    a.setAttribute("download", ""); // dopusti download (ili otvori viewer, ovisno o browseru)
+    a.setAttribute("download", ""); // suggest download
     li.appendChild(a);
     list.appendChild(li);
   });
 
-  // Submit -> posluži PDF
+  // Handle form submit
   window.servePdf = function(e) {
     e.preventDefault();
-    var file = select && select.value;
+    var file = select.value;
     if (!file) return false;
     window.location.href = buildUrl(file);
     return false;
