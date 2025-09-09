@@ -1,0 +1,179 @@
+---
+layout: base.njk
+title: Mediji
+permalink: /mediji/
+---
+
+<!-- IZ MEDIJA — SIMPLE CAROUSEL (all-in-one) -->
+<section id="iz-medija" class="box special">
+  <header class="major">
+    <h3>Iz medija — izdvojeno</h3>
+    <p>Tri priče — klikni sliku za detalje</p>
+  </header>
+
+  <!-- Slides -->
+  <div class="carousel" data-interval="4000">
+    <!-- SLIDE 1 -->
+    <a class="slide is-active"
+       href="https://www.24sata.hr/news/edukativno-druzenje-kod-vatrogasaca-jvp-a-zagreb-naucio-sam-gasiti-pozar-1044142"
+       target="_blank" rel="noopener">
+      <img src="{{ '/images/mediji/edukativno-druzenje.webp' | url }}" alt="Edukativno druženje — 24sata">
+      <span class="caption">Edukativno druženje — 24sata</span>
+    </a>
+
+    <!-- SLIDE 2 -->
+    <a class="slide"
+       href="https://magazin.hrt.hr/price-iz-hrvatske/down-11626039"
+       target="_blank" rel="noopener">
+      <img src="{{ '/images/mediji/hrt-magazin.jpg' | url }}" alt="Priče iz Hrvatske — HRT">
+      <span class="caption">Priče iz Hrvatske — HRT</span>
+    </a>
+
+    <!-- SLIDE 3 -->
+    <a class="slide"
+       href="https://dalmatinskiportal.hr/vijesti/vatrena-ljubav-savrseni-dan--sa--splitskim-vatrogascima/168539"
+       target="_blank" rel="noopener">
+      <img src="{{ '/images/mediji/vatrena-ljubav.jpg' | url }}" alt="Vatrena ljubav — Dalmatinski portal">
+      <span class="caption">Vatrena ljubav — Dalmatinski portal</span>
+    </a>
+  </div>
+
+  <!-- Controls -->
+  <ul class="actions special" style="margin-top:.75rem">
+    <li><button class="button small prev" type="button">‹</button></li>
+    <li><button class="button small next" type="button">›</button></li>
+  </ul>
+
+  <!-- Dots -->
+  <div class="dots" aria-label="Navigacija slajdova"></div>
+
+  <!-- Inline CSS (Alpha-friendly) -->
+  <style>
+    /* Layout container */
+    #iz-medija .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+      height: 360px;         /* fixed display height on desktop */
+      margin: 0 auto;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 0.65rem 1.25rem rgba(0,0,0,.08);
+    }
+    /* Slides */
+    #iz-medija .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .35s ease;
+      display: block;
+      background: #111;
+    }
+    #iz-medija .slide.is-active { opacity: 1; visibility: visible; z-index: 1; }
+    /* Images forced to uniform visual size */
+    #iz-medija .slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block; user-select: none; -webkit-user-drag: none;
+    }
+    /* Caption chip */
+    #iz-medija .caption {
+      position: absolute; left: .75rem; bottom: .75rem;
+      background: rgba(0,0,0,.55); color: #fff; font-size: .9rem; line-height: 1.2;
+      padding: .4rem .6rem; border-radius: .35rem; max-width: calc(100% - 1.5rem);
+      text-wrap: balance;
+    }
+    /* Dots */
+    #iz-medija .dots { display:flex; gap:.5rem; justify-content:center; align-items:center; margin-top:.5rem; }
+    #iz-medija .dot { width:.55rem; height:.55rem; border-radius:50%; background:rgba(0,0,0,.15); border:0; cursor:pointer; padding:0; }
+    #iz-medija .dot[aria-current="true"] { background: rgba(0,0,0,.5); }
+    /* Mobile */
+    @media screen and (max-width: 736px) {
+      #iz-medija .carousel { height: 220px; }
+      #iz-medija .caption { font-size: .85rem; }
+    }
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) { #iz-medija .slide { transition: none; } }
+
+    /* Links list spacing */
+    #mediji-list ul.alt li + li { margin-top: .4rem; }
+  </style>
+
+  <!-- Inline JS (tiny, no deps) -->
+  <script>
+    (function () {
+      var section = document.getElementById('iz-medija');
+      if (!section) return;
+
+      var carousel = section.querySelector('.carousel');
+      var slides = Array.prototype.slice.call(section.querySelectorAll('.slide'));
+      var prevBtn = section.querySelector('.prev');
+      var nextBtn = section.querySelector('.next');
+      var dotsWrap = section.querySelector('.dots');
+      if (!slides.length) return;
+
+      // build dots
+      slides.forEach(function(_, i){
+        var b = document.createElement('button');
+        b.className = 'dot';
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Idi na slajd ' + (i+1));
+        b.addEventListener('click', function(){ show(i); restart(); });
+        dotsWrap.appendChild(b);
+      });
+      var dots = Array.prototype.slice.call(section.querySelectorAll('.dot'));
+
+      var index = slides.findIndex(function(s){ return s.classList.contains('is-active'); });
+      if (index < 0) index = 0;
+
+      function render() {
+        slides.forEach(function(s){ s.classList.remove('is-active'); });
+        slides[index].classList.add('is-active');
+        dots.forEach(function(d){ d.removeAttribute('aria-current'); });
+        if (dots[index]) dots[index].setAttribute('aria-current', 'true');
+      }
+      function show(i) { index = (i + slides.length) % slides.length; render(); }
+
+      nextBtn && nextBtn.addEventListener('click', function(){ show(index + 1); restart(); });
+      prevBtn && prevBtn.addEventListener('click', function(){ show(index - 1); restart(); });
+
+      var delay = parseInt(carousel.getAttribute('data-interval'), 10) || 4000;
+      var timer;
+      function start() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        stop(); timer = setInterval(function(){ show(index + 1); }, delay);
+      }
+      function stop() { if (timer) clearInterval(timer); }
+      function restart(){ stop(); start(); }
+
+      ['mouseenter','focusin','touchstart'].forEach(function(ev){ section.addEventListener(ev, stop, {passive:true}); });
+      ['mouseleave','focusout','touchend'].forEach(function(ev){ section.addEventListener(ev, start, {passive:true}); });
+
+      render(); start();
+    })();
+  </script>
+</section>
+
+<!-- MEDIJI — TITLES ONLY LIST -->
+<section id="mediji-list" class="box">
+  <header class="major">
+    <h3>Mediji — popis članaka</h3>
+    <p>Samo naslovi, bez slika.</p>
+  </header>
+
+  <ul class="alt">
+    <li><a href="https://www.24sata.hr/news/edukativno-druzenje-kod-vatrogasaca-jvp-a-zagreb-naucio-sam-gasiti-pozar-1044142" target="_blank" rel="noopener">
+      Edukativno druženje kod vatrogasaca — 24sata
+    </a></li>
+    <li><a href="https://magazin.hrt.hr/price-iz-hrvatske/down-11626039" target="_blank" rel="noopener">
+      Priče iz Hrvatske — HRT Magazin
+    </a></li>
+    <li><a href="https://dalmatinskiportal.hr/vijesti/vatrena-ljubav-savrseni-dan--sa--splitskim-vatrogascima/168539" target="_blank" rel="noopener">
+      Vatrena ljubav — Dalmatinski portal
+    </a></li>
+
+    <!-- Add more as needed -->
+    <!-- <li><a href="https://example.com/clanak" target="_blank" rel="noopener">Naslov članka — Izvor</a></li> -->
+  </ul>
+</section>
