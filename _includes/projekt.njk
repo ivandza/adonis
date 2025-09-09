@@ -1,6 +1,4 @@
----
-pagination: false
----
+<!-- layouts/projekt.njk -->
 <section id="main" class="container">
   <section class="box special">
     <header class="major">
@@ -8,7 +6,7 @@ pagination: false
       {% if summary %}<p>{{ summary }}</p>{% endif %}
     </header>
     {% if cover_image %}
-    <span class="image featured"><img src="{{ cover_image | url }}" alt="{{ title }}"></span>
+      <span class="image featured"><img src="{{ cover_image | url }}" alt="{{ title }}"></span>
     {% endif %}
   </section>
 
