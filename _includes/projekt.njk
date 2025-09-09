@@ -1,0 +1,23 @@
+<!— layouts/projekt.njk —>
+---
+pagination: false
+---
+<section id="main" class="container">
+  <section class="box special">
+    <header class="major">
+      <h2>{{ title }}</h2>
+      {% if summary %}<p>{{ summary }}</p>{% endif %}
+    </header>
+    {% if cover_image %}
+    <span class="image featured"><img src="{{ cover_image | url }}" alt="{{ title }}"></span>
+    {% endif %}
+  </section>
+
+  <section class="box">
+    {{ content | safe }}
+  </section>
+
+  <ul class="actions special" style="margin-top:.75rem">
+    <li><a href="{{ '/projekti/' | url }}" class="button alt">← Povratak na projekte</a></li>
+  </ul>
+</section>
