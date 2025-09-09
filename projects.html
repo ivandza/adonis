@@ -4,10 +4,10 @@ title: Projekti
 permalink: /projekti/
 ---
 
-<!-- IZ MEDIJA — SIMPLE CAROUSEL (all-in-one) -->
+<!-- PROJEKTI — SIMPLE CAROUSEL (all-in-one) -->
 <section id="iz-medija" class="box special">
   <header class="major">
-    <h3>Iz medija — izdvojeno</h3>
+    <h3>Projekti — izdvojeno</h3>
     <p>Tri priče — klikni sliku za detalje</p>
   </header>
 
@@ -20,6 +20,7 @@ permalink: /projekti/
       <img src="{{ '/images/mediji/edukativno-druzenje.webp' | url }}" alt="Edukativno druženje — 24sata">
       <span class="caption">Edukativno druženje — 24sata</span>
     </a>
+
     <!-- SLIDE 2 -->
     <a class="slide"
        href="https://magazin.hrt.hr/price-iz-hrvatske/down-11626039"
@@ -52,8 +53,8 @@ permalink: /projekti/
     #iz-medija .carousel {
       position: relative;
       width: 100%;
-      max-width: 980px;      /* keep it neat inside Alpha container */
-      height: 360px;         /* FIXED DISPLAY HEIGHT on desktop */
+      max-width: 980px;
+      height: 360px;
       margin: 0 auto;
       border-radius: 0.75rem;
       overflow: hidden;
@@ -67,8 +68,8 @@ permalink: /projekti/
       opacity: 0;
       visibility: hidden;
       transition: opacity .35s ease;
-      display: block;        /* makes <a> fill the box */
-      background: #111;      /* subtle backdrop while image loads */
+      display: block;
+      background: #111;
     }
     #iz-medija .slide.is-active {
       opacity: 1;
@@ -80,7 +81,7 @@ permalink: /projekti/
     #iz-medija .slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;     /* crop to fill — consistent look from any source size */
+      object-fit: cover;
       object-position: center;
       display: block;
       user-select: none;
@@ -123,110 +124,4 @@ permalink: /projekti/
       background: rgba(0,0,0,.5);
     }
 
-    /* Mobile: smaller fixed height */
-    @media screen and (max-width: 736px) {
-      #iz-medija .carousel { height: 220px; }
-      #iz-medija .caption { font-size: .85rem; }
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      #iz-medija .slide { transition: none; }
-    }
-
-    /* OPTIONAL: small tweaks for the links list below */
-    #projekti-list ul.alt li + li { margin-top: .4rem; }
-  </style>
-
-  <!-- Inline JS (tiny, no deps) -->
-  <script>
-    (function () {
-      var section = document.getElementById('iz-medija');
-      if (!section) return;
-
-      var carousel = section.querySelector('.carousel');
-      var slides = Array.prototype.slice.call(section.querySelectorAll('.slide'));
-      var prevBtn = section.querySelector('.prev');
-      var nextBtn = section.querySelector('.next');
-      var dotsWrap = section.querySelector('.dots');
-
-      if (!slides.length) return;
-
-      // build dots
-      slides.forEach(function(_, i){
-        var b = document.createElement('button');
-        b.className = 'dot';
-        b.type = 'button';
-        b.setAttribute('aria-label', 'Idi na slajd ' + (i+1));
-        b.addEventListener('click', function(){ show(i); restart(); });
-        dotsWrap.appendChild(b);
-      });
-
-      var dots = Array.prototype.slice.call(section.querySelectorAll('.dot'));
-
-      var index = slides.findIndex(function(s){ return s.classList.contains('is-active'); });
-      if (index < 0) index = 0;
-
-      function render() {
-        slides.forEach(function(s){ s.classList.remove('is-active'); });
-        slides[index].classList.add('is-active');
-        dots.forEach(function(d){ d.removeAttribute('aria-current'); });
-        if (dots[index]) dots[index].setAttribute('aria-current', 'true');
-      }
-
-      function show(i) {
-        index = (i + slides.length) % slides.length;
-        render();
-      }
-
-      nextBtn && nextBtn.addEventListener('click', function(){ show(index + 1); restart(); });
-      prevBtn && prevBtn.addEventListener('click', function(){ show(index - 1); restart(); });
-
-      // autoplay with pause on hover/focus
-      var delay = parseInt(carousel.getAttribute('data-interval'), 10) || 4000;
-      var timer;
-      function start() {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        stop();
-        timer = setInterval(function(){ show(index + 1); }, delay);
-      }
-      function stop() { if (timer) clearInterval(timer); }
-      function restart(){ stop(); start(); }
-
-      ['mouseenter','focusin','touchstart'].forEach(function(ev){
-        section.addEventListener(ev, stop, {passive:true});
-      });
-      ['mouseleave','focusout','touchend'].forEach(function(ev){
-        section.addEventListener(ev, start, {passive:true});
-      });
-
-      render();
-      start();
-    })();
-  </script>
-</section>
-
-<!-- LINKS-ONLY PROJECT LIST (no images) -->
-<section id="projekti-list" class="box">
-  <header class="major">
-    <h3>Projekti — popis poveznica</h3>
-    <p>Samo naslovi — bez slika.</p>
-  </header>
-
-  <ul class="alt">
-    <!-- INTERNAL LINKS (use | url for prefix) -->
-    <li><a href="{{ '/projekti/nas-projekt-1/' | url }}">Naš projekt 1 — edukacije i radionice</a></li>
-    <li><a href="{{ '/projekti/nas-projekt-2/' | url }}">Naš projekt 2 — inkluzivne aktivnosti</a></li>
-    <li><a href="{{ '/projekti/nas-projekt-3/' | url }}">Naš projekt 3 — terapijski program</a></li>
-
-    <!-- EXTERNAL LINKS (open in new tab) -->
-    <li><a href="https://example.com/partner-projekt-a" target="_blank" rel="noopener">Partnerski projekt A — suradnja</a></li>
-    <li><a href="https://example.com/partner-projekt-b" target="_blank" rel="noopener">Partnerski projekt B — međunarodna razmjena</a></li>
-    <li><a href="https://example.com/partner-projekt-c" target="_blank" rel="noopener">Partnerski projekt C — volonterske akcije</a></li>
-  </ul>
-
-  <!-- Optional CTA -->
-  <ul class="actions special" style="margin-top:.75rem">
-    <li><a href="{{ '/donacije/' | url }}" class="button">Podrži naše projekte</a></li>
-  </ul>
-</section>
+    /* Mobile: smaller fixed he*
