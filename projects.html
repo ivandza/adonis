@@ -4,124 +4,20 @@ title: Projekti
 permalink: /projekti/
 ---
 
-<!-- PROJEKTI — SIMPLE CAROUSEL (all-in-one) -->
-<section id="iz-medija" class="box special">
-  <header class="major">
-    <h3>Projekti — izdvojeno</h3>
-    <p>Tri priče — klikni sliku za detalje</p>
-  </header>
-
-  <!-- Slides -->
-  <div class="carousel" data-interval="4000">
-    <!-- SLIDE 1 -->
-    <a class="slide is-active"
-       href="https://www.24sata.hr/news/edukativno-druzenje-kod-vatrogasaca-jvp-a-zagreb-naucio-sam-gasiti-pozar-1044142"
-       target="_blank" rel="noopener">
-      <img src="{{ '/images/mediji/edukativno-druzenje.webp' | url }}" alt="Edukativno druženje — 24sata">
-      <span class="caption">Edukativno druženje — 24sata</span>
-    </a>
-
-    <!-- SLIDE 2 -->
-    <a class="slide"
-       href="https://magazin.hrt.hr/price-iz-hrvatske/down-11626039"
-       target="_blank" rel="noopener">
-      <img src="{{ '/images/mediji/hrt-magazin.jpg' | url }}" alt="Priče iz Hrvatske — HRT">
-      <span class="caption">Priče iz Hrvatske — HRT</span>
-    </a>
-
-    <!-- SLIDE 3 -->
-    <a class="slide"
-       href="https://dalmatinskiportal.hr/vijesti/vatrena-ljubav-savrseni-dan--sa--splitskim-vatrogascima/168539"
-       target="_blank" rel="noopener">
-      <img src="{{ '/images/mediji/vatrena-ljubav.jpg' | url }}" alt="Vatrena ljubav — Dalmatinski portal">
-      <span class="caption">Vatrena ljubav — Dalmatinski portal</span>
-    </a>
-  </div>
-
-  <!-- Controls -->
-  <ul class="actions special" style="margin-top:.75rem">
-    <li><button class="button small prev" type="button">‹</button></li>
-    <li><button class="button small next" type="button">›</button></li>
-  </ul>
-
-  <!-- Dots -->
-  <div class="dots" aria-label="Navigacija slajdova"></div>
-
-  <!-- Inline CSS (Alpha-friendly) -->
-  <style>
-    /* Layout container */
-    #iz-medija .carousel {
-      position: relative;
-      width: 100%;
-      max-width: 980px;
-      height: 360px;
-      margin: 0 auto;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      box-shadow: 0 0.65rem 1.25rem rgba(0,0,0,.08);
-    }
-
-    /* Slides */
-    #iz-medija .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .35s ease;
-      display: block;
-      background: #111;
-    }
-    #iz-medija .slide.is-active {
-      opacity: 1;
-      visibility: visible;
-      z-index: 1;
-    }
-
-    /* Images forced to uniform visual size */
-    #iz-medija .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    /* Caption chip */
-    #iz-medija .caption {
-      position: absolute;
-      left: .75rem;
-      bottom: .75rem;
-      background: rgba(0,0,0,.55);
-      color: #fff;
-      font-size: .9rem;
-      line-height: 1.2;
-      padding: .4rem .6rem;
-      border-radius: .35rem;
-      max-width: calc(100% - 1.5rem);
-      text-wrap: balance;
-    }
-
-    /* Dots */
-    #iz-medija .dots {
-      display: flex;
-      gap: .5rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: .5rem;
-    }
-    #iz-medija .dot {
-      width: .55rem;
-      height: .55rem;
-      border-radius: 50%;
-      background: rgba(0,0,0,.15);
-      border: 0;
-      cursor: pointer;
-      padding: 0;
-    }
-    #iz-medija .dot[aria-current="true"] {
-      background: rgba(0,0,0,.5);
-    }
-
-    /* Mobile: smaller fixed he*
+<section id="main" class="container">
+  <section class="box">
+    <header class="major">
+      <h2>Naši projekti</h2>
+    </header>
+    <ul class="alt">
+      <li><a href="{{ '/projekti/i-mi-mozemo-biti-vatrogasci/' | url }}">I MI MOŽEMO BITI VATROGASCI</a></li>
+      <li><a href="{{ '/projekti/ljetni-dani-mladih-downica/' | url }}">LJETNI DANI MLADIH DOWNIĆA</a></li>
+      <li><a href="{{ '/projekti/slikovnica-hrabra-druzina-i-noldo/' | url }}">SLIKOVNICA – HRABRA DRUŽINA I NOLDO</a></li>
+      <li><a href="{{ '/projekti/osjetimo-smijehom/' | url }}">OSJETIMO SMIJEHOM</a></li>
+      <li><a href="{{ '/projekti/edukacija-odgojno-obrazovnih-djelatnika/' | url }}">EDUKACIJA ODGOJNO OBRAZOVNIH DJELATNIKA</a></li>
+      <li><a href="{{ '/projekti/pomozimo-zajedno/' | url }}">POMOZIMO ZAJEDNO</a></li>
+      <li><a href="{{ '/projekti/terapijski-kabinet-za-bolje-sutra/' | url }}">TERAPIJSKI KABINET ZA BOLJE SUTRA</a></li>
+      <li><a href="{{ '/projekti/registar-pruzimo-sansu/' | url }}">REGISTAR – PRUŽIMO ŠANSU</a></li>
+    </ul>
+  </section>
+</section>

@@ -1,4 +1,7 @@
-<!-- layouts/projekt.njk -->
+{# _includes/layouts/projekt.njk #}
+{% extends "base.njk" %}
+
+{% block content %}
 <section id="main" class="container">
   <section class="box special">
     <header class="major">
@@ -18,3 +21,4 @@
     <li><a href="{{ '/projekti/' | url }}" class="button alt">← Povratak na projekte</a></li>
   </ul>
 </section>
+{% endblock %}
