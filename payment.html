@@ -1,0 +1,94 @@
+---
+layout: base.njk
+title: Donacije
+permalink: /uplata/
+---
+<section id="main" class="container">
+
+  <!-- Success summary (hidden until we have data) -->
+    <section id="potvrda" class="box special">
+        <header class="major">
+            <h3>Hvala vam! Za dovršetak je potrebno još samo izvršiti uplatu.</h3>
+        </header>
+
+        <div class="row gtr-50 gtr-uniform">
+            <div class="col-6 col-12-mobilep">
+            <h4>Uplata na račun udruge</h4>
+            <p>
+                IBAN: <code>HR1724020061101141976</code><br>
+                Banka: Erste&amp;Steiermärkische Bank d.d.<br>
+                Primatelj: Humanitarna udruga Adonis<br>
+                Opis plaćanja: <em>Donacija — Darovi s pričom</em>
+            </p>
+            </div>
+
+            <div class="col-6 col-12-mobilep">
+            <h4>Donacija putem QR koda</h4>
+            <span class="image">
+                <img src="{{ '/images/qr-donacije.jpg' | url }}" alt="QR kod za IBAN donaciju">
+            </span>
+            </div>
+        </div>
+    </section>
+
+  <section id="potvrda" class="box special" hidden>
+    <header class="major">
+      <h3>Hvala! Zaprimili smo vaše podatke</h3>
+      <p>U nastavku su upute za uplatu. Sažetak vaše prijave:</p>
+    </header>
+    <dl class="alt">
+      <dt>Ime i prezime</dt><dd id="c-ime"></dd>
+      <dt>E-mail</dt><dd id="c-email"></dd>
+      <dt>Adresa</dt><dd id="c-adresa"></dd>
+      <dt>Iznos (€)</dt><dd id="c-iznos"></dd>
+      <dt>Predmet</dt><dd id="c-predmet"></dd>
+      <dt>Veličina</dt><dd id="c-velicina"></dd>
+    </dl>
+  </section>
+  <!-- Impact -->
+  <section class="box">
+    <header class="major">
+      <h3>Vaša podrška znači</h3>
+    </header>
+    <ul>
+      <li>💡 više edukacija i radionica za djecu i mlade</li>
+      <li>🏠 sigurniju i inkluzivniju zajednicu</li>
+      <li>🤝 priliku za zapošljavanje i samostalnost naših korisnika</li>
+      <li>🌍 širenje svijesti i uklanjanje predrasuda</li>
+    </ul>
+  </section>
+
+</section>
+
+<script>
+(function(){
+  // If we came from a successful submit (?ok=1), show summary and optionally hide form
+  var params = new URLSearchParams(location.search);
+  var ok = params.has('ok');
+
+  var raw = sessionStorage.getItem('donacija');
+  if (raw) {
+    try {
+      var d = JSON.parse(raw);
+      var set = function(id, val){ var el = document.getElementById(id); if (el && val) el.textContent = val; };
+      set('c-ime', d.ime_prezime);
+      set('c-email', d.email);
+      set('c-adresa', d.adresa);
+      set('c-iznos', d.iznos);
+      set('c-predmet', d.predmet);
+      set('c-velicina', d.velicina);
+
+      var box = document.getElementById('potvrda');
+      if (box) box.hidden = false;
+
+      // Clear after render so refresh doesn’t keep stale data (optional)
+      // sessionStorage.removeItem('donacija');
+    } catch(e) {}
+  }
+
+  if (ok) {
+    var formSection = document.getElementById('doniraj');
+    if (formSection) formSection.style.display = 'none';
+  }
+})();
+</script>

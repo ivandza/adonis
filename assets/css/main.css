@@ -3067,7 +3067,8 @@
 		}
 		.logo{
 			padding: 0.25em;
-			width: 75px;
+			width: 120px;
+  			height: 65px;
 		}
 		#header.alt {
 			-moz-animation: none;
@@ -3405,6 +3406,11 @@
 				padding: 10em 0 18em 0;
 			}
 
+			.logo{
+				width: 100px;
+    			height: 55px;
+			}
+
 	}
 
 /* Normal */
@@ -3432,6 +3438,11 @@
 				#banner h2 {
 					font-size: 3.5em;
 				}
+
+			.logo{
+				width: 88px;
+        		height: 46px;
+			}
 
 	}
 
