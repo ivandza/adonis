@@ -3067,7 +3067,8 @@
 		}
 		.logo{
 			padding: 0.25em;
-			width: 75px;
+			width: 120px;
+			height: 65px;
 		}
 		#header.alt {
 			-moz-animation: none;
