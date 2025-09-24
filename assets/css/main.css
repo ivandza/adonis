@@ -4086,10 +4086,15 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 1rem;
-  color:#fff;
   border-bottom: none;
   gap: 5px;
+}
+
+.title-text
+{
+	font-size: 1rem;
+  	color:#fff;
+
 }
 
 /* Default: show full text, hide short text */
