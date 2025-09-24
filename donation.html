@@ -3,71 +3,65 @@ layout: base.njk
 title: Donacije 
 permalink: /donacije/
 ---
+
 <section id="main" class="container">
   <!-- Donation Form -->
   <section id="doniraj" class="box">
     <header class="major">
-      <h3>Obrazac za donaciju</h3>
-      <p>Ispunite podatke i dovršite uplatu. Nakon uplate stiže potvrda e-poštom vama i udruzi.</p>
+      <h3>Zašto donirati?</h3>
+      <p>
+        Daruj priliku za osmijeh!<br><br>
+        Zamislite svijet u kojem svako dijete i mlada osoba, bez obzira na poteškoće ili obiteljsku situaciju, 
+        ima priliku za pomoć u obrazovanju, pravo na dostojanstvo, jednakost, posao.  
+        Vaša donacija pomaže upravo u tome – stvara sigurnost, toplinu, vraća osmijehe i gradi budućnost.
+        <br>
+        Naši korisnici su djeca, mladi i odrasli s poteškoćama i bez odgovarajuće roditeljske skrbi. 
+        Njihova svakodnevica često je izazovna, ali uz vašu pomoć može postati lakša i sretnija.
+        <br>
+        Podrži nas i pomozi stvarati svijet u kojem svatko ima šansu. 🤝 
+        <br>
+        Budite dio promjene – jer zajedno činimo svijet boljim mjestom.
+      </p>
     </header>
-
-    <!-- Replace action with your endpoint (Formspree/Web3Forms/EmailJS/PHP) -->
-    <form method="post" action="https://formspree.io/f/your-id-here">
-      <div class="row gtr-50 gtr-uniform">
-        <div class="col-6 col-12-mobilep">
-          <input type="text" name="ime_prezime" id="ime_prezime" placeholder="Ime i prezime" required />
-        </div>
-        <div class="col-6 col-12-mobilep">
-          <input type="email" name="email" id="email" placeholder="E-mail adresa" required />
-        </div>
-
-        <div class="col-12">
-          <input type="text" name="adresa" id="adresa" placeholder="Adresa za dostavu" required />
-        </div>
-
-        <div class="col-12">
-          <label for="iznos" class="visually-hidden">Iznos donacije (€)</label>
-          <input type="number" name="iznos" id="iznos" inputmode="decimal" min="1" step="1" placeholder="Iznos donacije (€)" required />
-        </div>
-
-        <div class="col-12">
-          <textarea name="poruka" id="poruka" rows="5" placeholder="Poruka (neobavezno)"></textarea>
-        </div>
-
-        <div class="col-12">
-          <ul class="actions special">
-            <li><input type="submit" value="Doniraj i preuzmi dar zahvale" class="primary" /></li>
-          </ul>
-        </div>
-      </div>
-      <!-- Optional hidden meta -->
-      <input type="hidden" name="source" value="Darovi s pričom" />
-    </form>
   </section>
 
   <!-- Payment instructions / QR -->
   <section class="box special">
     <header class="major">
-      <h3>Plaćanje donacije</h3>
+      <h3>Kako možete donirati?</h3>
       <p>Možete donirati uplatom na račun ili skeniranjem QR koda.</p>
     </header>
+
     <div class="row gtr-50 gtr-uniform">
       <div class="col-6 col-12-mobilep">
         <h4>Uplata na račun udruge</h4>
         <p>
-          IBAN: <code>HR1724020061101141976</code><br/>
-          Banka: Erste&amp;Steiermärkische Bank d.d.<br/>
-          Primatelj: Humanitarna udruga Adonis<br/>
+          IBAN: <code>HR1724020061101141976</code><br>
+          Banka: Erste&amp;Steiermärkische Bank d.d.<br>
+          Primatelj: Humanitarna udruga Adonis<br>
           Opis plaćanja: <em>Donacija — Darovi s pričom</em>
         </p>
       </div>
+
       <div class="col-6 col-12-mobilep">
         <h4>Donacija putem QR koda</h4>
-        <span class="image ">
-          <img src="{{ '/images/qr-donacije.jpg' | url }}" alt="QR kod za IBAN donaciju" />
+        <span class="image">
+          <img src="{{ '/images/qr-donacije.jpg' | url }}" alt="QR kod za IBAN donaciju">
         </span>
+        <br>
+        (Jednostavno skenirajte i donirajte iz svoje mobilne bankarske aplikacije).
       </div>
     </div>
+
+    <p>
+      Donacije mogu biti – novčana donacija, teško kvarljiva hrana, higijenske potrepštine, 
+      odjeća, obuća, školski pribor, tehnička oprema, radni materijal (npr. za radionice).
+      <br><br>
+      Ukoliko želite biti naš donator dugoročno, molimo vas popunite obrazac 
+      <a href="{{ '/assets/prijavnice/PRIJAVNICA-za-donatore.pdf' | url }}">
+        @PRIJAVNICA - za donatore
+      </a>
+    </p>
   </section>
 
   <!-- Impact -->
@@ -82,8 +76,4 @@ permalink: /donacije/
       <li>🌍 širenje svijesti i uklanjanje predrasuda</li>
     </ul>
   </section>
-
 </section>
-
-<!-- Inline helper JS (vanilla, minimal) -->
-

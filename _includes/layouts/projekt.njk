@@ -3,13 +3,38 @@
 
 {% block content %}
 <section id="main" class="container">
+
   <section class="box special">
     <header class="major">
       <h2>{{ title }}</h2>
       {% if summary %}<p>{{ summary }}</p>{% endif %}
     </header>
+
+    {# Smaller cover image #}
     {% if cover_image %}
-      <span class="image featured"><img src="{{ cover_image | url }}" alt="{{ title }}"></span>
+      <span class="image featured cover-narrow">
+        <img src="{{ cover_image | url }}" alt="{{ title }}">
+      </span>
+    {% endif %}
+
+    {# Optional gallery: front matter -> gallery: [ '/img/1.jpg', '/img/2.jpg', ... ] 
+       or gallery: [ { src:'/img/1.jpg', alt:'...' }, ... ] #}
+    {% if gallery and gallery.length %}
+      <div class="gallery-grid">
+        {% for item in gallery %}
+          {% set src = item.src or item %}
+          {% set alt = item.alt or title %}
+          <a href="{{ src | url }}" class="gallery-item" data-full="{{ src | url }}">
+            <img src="{{ src | url }}" alt="{{ alt }}" loading="lazy" decoding="async">
+          </a>
+        {% endfor %}
+      </div>
+
+      {# lightweight lightbox #}
+      <div class="lb" id="lb" aria-hidden="true">
+        <button class="lb-close" type="button" aria-label="Zatvori">×</button>
+        <img id="lb-img" alt="">
+      </div>
     {% endif %}
   </section>
 
@@ -21,4 +46,36 @@
     <li><a href="{{ '/projekti/' | url }}" class="button alt">← Povratak na projekte</a></li>
   </ul>
 </section>
+
 {% endblock %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var lb = document.getElementById('lb');
+  if (!lb) return;
+  var lbImg = document.getElementById('lb-img');
+
+  document.querySelectorAll('.gallery-item').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var src = a.getAttribute('data-full') || a.getAttribute('href');
+      lbImg.src = src;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  function closeLB () {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb) closeLB();
+  });
+  document.querySelector('.lb-close')?.addEventListener('click', closeLB);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLB();
+  });
+});
+</script>
