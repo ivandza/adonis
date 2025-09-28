@@ -110,7 +110,7 @@
 
 	body, input, select, textarea {
 		color: #777;
-		font-family: "Source Sans Pro", sans-serif;
+		font-family: "Open Sans", sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
 		line-height: 1.65em;
@@ -129,6 +129,11 @@
 
 		a:hover {
 			border-bottom-color: transparent;
+		}
+		a.alt{
+			color: #fff;
+			text-decoration: none;
+			border-bottom: none;
 		}
 
 	strong, b {
@@ -2338,6 +2343,7 @@
 
 		.box.special {
 			text-align: center;
+			padding-bottom: 4em;
 		}
 
 		.box .image.featured {
@@ -3078,6 +3084,7 @@
 			-webkit-animation: reveal-header 0.5s;
 			-ms-animation: reveal-header 0.5s;
 			animation: reveal-header 0.5s;
+			background-color: #353333d6;
 		}
 		.logo{
 			margin-left: 10px;
@@ -3203,7 +3210,14 @@
 		background-position-y: 0%;
 		background-size: auto, 120%;
 	}
-
+	
+	.filter{
+		background: #100d0687;
+		margin-left: 20%;
+		margin-right: 20%;
+		padding: 2em;
+		border-radius: 15px;
+	}
 	.filter::after{
 		filter: blur(5px);
 	}
@@ -3429,8 +3443,9 @@
 		/* Banner */
 
 			#banner {
-				padding: 10em 0 18em 0;
+				padding: 8em 0 16em 0;
 			}
+
 
 			.logo{
 				width: 45px;
@@ -3552,7 +3567,10 @@
 			}
 
 		/* Banner */
-
+		.filter{
+			margin-left:0;
+			margin-right:0;
+		}
 		/* Nav */
 
 			#page-wrapper {
@@ -4023,6 +4041,17 @@
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
+.gallery-grid img{
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* use the per-image focal point */
+  object-position: var(--focus, 50% 50%);
+  transform-origin: var(--focus, 50% 50%);
+
+  transition: transform .25s ease;
+	}
 @media (max-width: 980px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -4054,7 +4083,7 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-  z-index: 9999;
+  z-index: 10004;
 }
 .lb.open { opacity: 1; visibility: visible; }
 .lb img {
@@ -4116,3 +4145,45 @@
   }
 }
 
+.field-error {
+  color: #c62828;       /* crvena */
+  font-size: .9rem;
+  margin-top: .25rem;
+  display: block;
+}
+.form-errors {
+  color: #c62828;
+  margin-bottom: 1rem;
+}
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: #c62828;
+}
+.catalog-item{
+	background: #9dbbff57;
+    border-radius: 10px;
+    padding: 10px 2px;
+}
+#katalog .row.gtr-50.gtr-uniform {
+  display: flex;          /* if your theme already uses flex, this just overrides */
+  flex-wrap: wrap;        /* keep your multi-line layout */
+  align-items: stretch;   /* <-- equal height per row */
+}
+
+/* Let each column stretch and the card fill it */
+#katalog .col-4.col-12-mobilep {
+  display: flex;
+}
+
+#katalog .catalog-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+      align-items: center;
+}
+
+/* Keep the CTA at the bottom */
+#katalog .catalog-item .actions {
+  margin-top: auto;
+}

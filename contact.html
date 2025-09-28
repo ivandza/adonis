@@ -21,19 +21,28 @@ permalink: /kontakt/
     <header class="major">
       <h3>Kontaktni obrazac</h3>
     </header>
-    <form method="post" action="https://formspree.io/f/your-id-here">
+    <form id="kontakt-form" method="post" action="https://formspree.io/f/your-id-here" novalidate>
+      <div id="form-errors" class="form-errors" role="alert" aria-live="polite" hidden></div>
+
       <div class="row gtr-50 gtr-uniform">
         <div class="col-6 col-12-mobilep">
-          <input type="text" name="ime" id="ime" placeholder="Ime i prezime" required />
+          <input type="text" name="ime" id="ime" placeholder="Ime i prezime" required aria-describedby="imeErr" />
+          <small class="field-error" id="imeErr" hidden></small>
         </div>
+
         <div class="col-6 col-12-mobilep">
-          <input type="email" name="email" id="email" placeholder="E-mail adresa" required />
+          <input type="email" name="email" id="email" placeholder="E-mail adresa" required aria-describedby="emailErr" />
+          <small class="field-error" id="emailErr" hidden></small>
         </div>
+
         <div class="col-6 col-12-mobilep">
-          <input type="text" name="telefon" id="telefon" placeholder="Kontakt telefon" />
+          <input type="tel" name="telefon" id="telefon" placeholder="Kontakt telefon"
+                inputmode="tel" pattern="\+?[0-9 ()-]{6,}" aria-describedby="telefonErr" />
+          <small class="field-error" id="telefonErr" hidden></small>
         </div>
+
         <div class="col-6 col-12-mobilep">
-          <select name="predmet" id="predmet" required>
+          <select name="predmet" id="predmet" required aria-describedby="predmetErr">
             <option value="">— Odaberite predmet poruke —</option>
             <option>Prijava člana</option>
             <option>Terapije</option>
@@ -43,10 +52,14 @@ permalink: /kontakt/
             <option>Suradnja</option>
             <option>Ostalo</option>
           </select>
+          <small class="field-error" id="predmetErr" hidden></small>
         </div>
+
         <div class="col-12">
-          <textarea name="poruka" id="poruka" placeholder="Vaša poruka" rows="6" required></textarea>
+          <textarea name="poruka" id="poruka" placeholder="Vaša poruka" rows="6" required aria-describedby="porukaErr"></textarea>
+          <small class="field-error" id="porukaErr" hidden></small>
         </div>
+
         <div class="col-12">
           <ul class="actions special">
             <li><input type="submit" value="Pošalji" class="primary" /></li>
@@ -54,5 +67,120 @@ permalink: /kontakt/
         </div>
       </div>
     </form>
-    <p class="small">👉 Poruka će biti poslana na: <a href="mailto:ivandzal7@gmail.com">udruga.adonis@gmail.com</a></p>
+
+    <p class="small">👉 Poruka će biti poslana na:
+      <a href="mailto:udruga.adonis@gmail.com">udruga.adonis@gmail.com</a>
+    </p>
+
   </section>
+<script>
+(function () {
+  const form = document.getElementById('kontakt-form');
+  if (!form) return;
+
+  const fields = {
+    ime: {
+      el: form.elements.ime,
+      errEl: document.getElementById('imeErr'),
+      validate(v) {
+        const t = v.trim();
+        if (!t) return 'Molimo unesite ime i prezime.';
+        if (t.length < 2) return 'Ime i prezime su prekratki.';
+        return '';
+      }
+    },
+    email: {
+      el: form.elements.email,
+      errEl: document.getElementById('emailErr'),
+      validate(v) {
+        const t = v.trim();
+        if (!t) return 'Unesite e-mail adresu.';
+        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
+        return ok ? '' : 'E-mail adresa nije ispravna.';
+      }
+    },
+    telefon: {
+      el: form.elements.telefon,
+      errEl: document.getElementById('telefonErr'),
+      validate(v) {
+        const t = v.trim();
+        if (!t) return ''; // opcionalno
+        const ok = /^\+?[0-9 ()-]{6,}$/.test(t);
+        return ok ? '' : 'Telefon smije sadržavati samo brojeve, razmake, zagrade i crtice (min 6 znakova).';
+      }
+    },
+    predmet: {
+      el: form.elements.predmet,
+      errEl: document.getElementById('predmetErr'),
+      validate(v) {
+        return v ? '' : 'Odaberite predmet poruke.';
+      }
+    },
+    poruka: {
+      el: form.elements.poruka,
+      errEl: document.getElementById('porukaErr'),
+      validate(v) {
+        const t = v.trim();
+        if (!t) return 'Unesite poruku.';
+        if (t.length < 10) return 'Poruka treba imati barem 10 znakova.';
+        return '';
+      }
+    }
+  };
+
+  const summary = document.getElementById('form-errors');
+
+  function setError(field, msg) {
+    field.el.setCustomValidity(msg);                 // zamjenjuje browser poruku
+    field.el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    if (field.errEl) {
+      field.errEl.textContent = msg;
+      field.errEl.hidden = !msg;
+    }
+  }
+
+  function validateField(field) {
+    const msg = field.validate(field.el.value);
+    setError(field, msg);
+    return !msg;
+  }
+
+  // Live validacija na input/blur
+  Object.values(fields).forEach(field => {
+    const handler = () => validateField(field);
+    field.el.addEventListener('input', handler);
+    field.el.addEventListener('blur', handler);
+    field.el.addEventListener('invalid', (e) => {
+      e.preventDefault();            // spriječi default bubble poruku
+      validateField(field);
+      updateSummary();
+    });
+  });
+
+  function updateSummary() {
+    if (!summary) return;
+    const msgs = Object.values(fields)
+      .map(f => f.errEl && !f.errEl.hidden ? `<li>${f.errEl.textContent}</li>` : '')
+      .filter(Boolean).join('');
+    summary.innerHTML = msgs ? `<ul>${msgs}</ul>` : '';
+    summary.hidden = !msgs;
+  }
+
+  form.addEventListener('submit', (e) => {
+    // provjeri sva polja
+    let firstBad = null;
+    Object.values(fields).forEach(f => {
+      const ok = validateField(f);
+      if (!ok && !firstBad) firstBad = f.el;
+    });
+
+    if (firstBad) {
+      e.preventDefault();
+      updateSummary();
+      firstBad.focus({ preventScroll: true });
+      firstBad.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    // ako je sve ok, formspree će obraditi submit normalno
+  });
+})();
+</script>

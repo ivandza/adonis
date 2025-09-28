@@ -91,12 +91,24 @@ permalink: /prijavnice/
   });
 
   // Handle form submit
-  window.servePdf = function(e) {
-    e.preventDefault();
-    var file = select.value;
-    if (!file) return false;
-    window.location.href = buildUrl(file);
-    return false;
-  };
+window.servePdf = function(e) {
+  e.preventDefault();
+
+  const select = document.getElementById('pdf-select');
+  const file = select.value;
+  if (!file) return false;
+
+  const url = buildUrl(file);
+
+  // Create a hidden download link
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = file; // Forces download
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  return false;
+};
 })();
 </script>

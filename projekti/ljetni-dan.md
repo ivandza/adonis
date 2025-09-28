@@ -6,7 +6,11 @@ summary: Međunarodni projekt za djecu i mlade sa sindromom Down – radionice, 
 cover_image: /images/projekti/ljetni-dani.jpg
 gallery:
   - src: /images/projekti/ljetni-dani2.jpg
+    alt: "Portret"
+    focus: "50% 0%"
   - src: /images/projekti/ljetni-dani3.jpg
+    alt: "Portret"
+    focus: "50% 0%"
   - src: /images/projekti/ljetni-dani4.jpg
 ---
 

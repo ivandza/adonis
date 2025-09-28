@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Darovi s pričom
-permalink: /shop/
+permalink: /darovi-s-pricom/
 ---
 
 <section id="main" class="container">
@@ -13,7 +13,7 @@ permalink: /shop/
       <p>„Kupovina“ kod nas ne postoji – postoji donacija iz srca. U znak zahvalnosti za vašu podršku, Udruga Adonis poslat će vam jedan od predmeta pripremljenih s ljubavlju: slikovnicu, privjesak, sličice za rad s djecom, majicu ili neki od budućih darova.</p>
       <p>Na ovaj način zajedno gradimo društvo u kojem svaka osoba ima priliku i podršku. Vaša donacija financira naše projekte i direktno pomaže korisnicima.</p>
       <ul class="actions special">
-        <li><a href="/shop/#katalog" class="button primary">Odaberi svoj dar zahvale i doniraj – tvoja podrška mijenja život!</a></li>
+        <li><a href="/darovi-s-pricom/#katalog" class="button primary">Odaberi svoj dar zahvale i doniraj – tvoja podrška mijenja život!</a></li>
       </ul>
     </section>
 
@@ -168,62 +168,80 @@ permalink: /shop/
       <p>Ispunite podatke i dovršite uplatu. Nakon uplate stiže potvrda e-poštom vama i udruzi.</p>
     </header>
 
-    <form method="post" action="https://formspree.io/f/your-id-here">
-      <div class="row gtr-50 gtr-uniform">
-        <div class="col-6 col-12-mobilep">
-          <input type="text" name="ime_prezime" id="ime_prezime" placeholder="Ime i prezime" required />
-        </div>
-        <div class="col-6 col-12-mobilep">
-          <input type="email" name="email" id="email" placeholder="E-mail adresa" required />
-        </div>
+  <form id="donacije-form" method="post" action="https://formspree.io/f/your-id-here" novalidate>
+  <div id="form2-errors" class="form-errors" role="alert" aria-live="polite" hidden></div>
 
-        <div class="col-6 col-12-mobilep">
-          <input type="text" name="adresa" id="adresa" placeholder="Adresa za dostavu" required />
-        </div>
+  <div class="row gtr-50 gtr-uniform">
+    <div class="col-6 col-12-mobilep">
+      <input type="text" name="ime_prezime" id="ime_prezime"
+             placeholder="Ime i prezime" required aria-describedby="imePrezimeErr" />
+      <small class="field-error" id="imePrezimeErr" hidden></small>
+    </div>
 
-        <div class="col-6 col-12-mobilep">
-          <input type="tel" name="mobitel" id="mobitel" placeholder="Kontakt broj" required />
-        </div>
+    <div class="col-6 col-12-mobilep">
+      <input type="email" name="email" id="email"
+             placeholder="E-mail adresa" required aria-describedby="emailErr" />
+      <small class="field-error" id="emailErr" hidden></small>
+    </div>
 
-        <div class="col-6 col-12-mobilep">
-          <select name="predmet" id="predmet" required>
-            <option value="">— Odaberite predmet zahvale —</option>
-            <option value="poster1">Plakat — Josip Patljak (1)</option>
-            <option value="poster2">Plakat — Josip Patljak (2)</option>
-            <option value="poster3">Plakat — Josip Patljak (3)</option>
-            <option value="poster4">Plakat — Josip Patljak (4)</option>
-            <option value="slikovnica">Slikovnica „Hrabra družina i Noldo u borbi s vatrom”</option>
-            <option value="privjesak">Privjesak</option>
-            <option value="pecs">Sličice za rad s djecom — PECS</option>
-            <option value="majica">Majica s NATPISOM</option>
-            <option value="ostalo">Ostalo (sezonski / prema raspoloživosti)</option>
-          </select>
-        </div>
+    <div class="col-6 col-12-mobilep">
+      <input type="text" name="adresa" id="adresa"
+             placeholder="Adresa za dostavu" required aria-describedby="adresaErr" />
+      <small class="field-error" id="adresaErr" hidden></small>
+    </div>
 
-        <div class="col-6 col-12-mobilep" id="velicine-wrap" style="display:none">
-          <select name="velicina" id="velicina">
-            <option value="">— Veličina majice —</option>
-            <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
-          </select>
-        </div>
+    <div class="col-6 col-12-mobilep">
+      <input type="tel" name="mobitel" id="mobitel"
+             placeholder="Kontakt broj" required aria-describedby="mobitelErr"
+             inputmode="tel" pattern="\+?[0-9 ()\/-]{6,}" />
+      <small class="field-error" id="mobitelErr" hidden></small>
+    </div>
 
-        <div class="col-12">
-          <label for="iznos" class="visually-hidden">Iznos donacije (€)</label>
-          <input type="number" name="iznos" id="iznos" inputmode="decimal" min="1" step="1" placeholder="Iznos donacije (€)" required />
-        </div>
+    <div class="col-6 col-12-mobilep">
+      <select name="predmet" id="predmet" required aria-describedby="predmetErr">
+        <option value="">— Odaberite predmet zahvale —</option>
+        <option value="poster1">Plakat — Josip Patljak (1)</option>
+        <option value="poster2">Plakat — Josip Patljak (2)</option>
+        <option value="poster3">Plakat — Josip Patljak (3)</option>
+        <option value="poster4">Plakat — Josip Patljak (4)</option>
+        <option value="slikovnica">Slikovnica „Hrabra družina i Noldo u borbi s vatrom”</option>
+        <option value="privjesak">Privjesak</option>
+        <option value="pecs">Sličice za rad s djecom — PECS</option>
+        <option value="majica">Majica s NATPISOM</option>
+        <option value="ostalo">Ostalo (sezonski / prema raspoloživosti)</option>
+      </select>
+      <small class="field-error" id="predmetErr" hidden></small>
+    </div>
 
-        <div class="col-12">
-          <textarea name="poruka" id="poruka" rows="5" placeholder="Poruka (neobavezno)"></textarea>
-        </div>
+    <div class="col-6 col-12-mobilep" id="velicine-wrap" style="display:none">
+      <select name="velicina" id="velicina" aria-describedby="velicinaErr">
+        <option value="">— Veličina majice —</option>
+        <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+      </select>
+      <small class="field-error" id="velicinaErr" hidden></small>
+    </div>
 
-        <div class="col-12">
-          <ul class="actions special">
-            <li><input type="submit" value="Doniraj i preuzmi dar zahvale" class="primary" /></li>
-          </ul>
-        </div>
-      </div>
-      <input type="hidden" name="source" value="Darovi s pričom" />
-    </form>
+    <div class="col-12">
+      <label for="iznos" class="visually-hidden">Iznos donacije (€)</label>
+      <input type="number" name="iznos" id="iznos"
+             inputmode="decimal" min="1" step="1"
+             placeholder="Iznos donacije (€)" required aria-describedby="iznosErr" />
+      <small class="field-error" id="iznosErr" hidden></small>
+    </div>
+
+    <div class="col-12">
+      <textarea name="poruka" id="poruka" rows="5" placeholder="Poruka (neobavezno)"></textarea>
+    </div>
+
+    <div class="col-12">
+      <ul class="actions special">
+        <li><input type="submit" value="Doniraj i preuzmi dar zahvale" class="primary" /></li>
+      </ul>
+    </div>
+  </div>
+  <input type="hidden" name="source" value="Darovi s pričom" />
+</form>
+
   </section>
     <section class="box special">
     <header class="major">
@@ -255,28 +273,27 @@ permalink: /shop/
 <script>
 (function () {
   var doc = document;
-  var predSelect = doc.getElementById('predmet');
-  var sizeWrap = doc.getElementById('velicine-wrap');
-  var sizeSelect = doc.getElementById('velicina');
-  var amountInput = doc.getElementById('iznos');
 
-  // Click on "Odaberi" -> prefill select + amount, then scroll to form
+  // ---------- Prefill from catalog cards ----------
+  var predSelect = doc.getElementById('predmet');
+  var sizeWrap   = doc.getElementById('velicine-wrap');
+  var sizeSelect = doc.getElementById('velicina');
+  var amountInput= doc.getElementById('iznos');
+
   doc.querySelectorAll('.item-select').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
-      e.preventDefault(); // set values first, then smooth scroll
+      e.preventDefault();
       var card = e.currentTarget.closest('section');
       if (!card) return;
 
-      var itemValue = card.getAttribute('data-item');  // slug (e.g. "majica")
-      var suggest = card.getAttribute('data-suggest');
+      var itemValue = card.getAttribute('data-item');
+      var suggest   = card.getAttribute('data-suggest');
 
       if (predSelect && itemValue) {
         predSelect.value = itemValue;
         predSelect.dispatchEvent(new Event('change', { bubbles: true }));
       }
-      if (amountInput && suggest) {
-        amountInput.value = suggest;
-      }
+      if (amountInput && suggest) amountInput.value = suggest;
 
       var target = doc.getElementById('doniraj');
       if (target && target.scrollIntoView) {
@@ -287,29 +304,173 @@ permalink: /shop/
     });
   });
 
-  // (Optional) Quick amount buttons (if you add .suggest somewhere)
-  doc.querySelectorAll('.suggest').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      var amt = e.currentTarget.getAttribute('data-amount');
-      if (amountInput && amt) amountInput.value = amt;
-    });
-  });
-
-  // Show size select only for T-shirt, and require it
   function toggleSize() {
     var val = predSelect ? predSelect.value : '';
     var needsSize = val === 'majica';
     if (sizeWrap) sizeWrap.style.display = needsSize ? '' : 'none';
     if (sizeSelect) {
       sizeSelect.required = needsSize;
-      if (!needsSize) sizeSelect.value = '';
+      if (!needsSize) {
+        sizeSelect.value = '';
+        // clear any size error when hidden
+        var err = doc.getElementById('velicinaErr');
+        if (err) { err.textContent = ''; err.hidden = true; }
+        sizeSelect.setCustomValidity('');
+        sizeSelect.setAttribute('aria-invalid', 'false');
+      }
     }
   }
-
   if (predSelect) {
     predSelect.addEventListener('change', toggleSize);
     toggleSize(); // initial
   }
+
+  // ---------- Validation (Croatian messages) ----------
+  var form = doc.getElementById('donacije-form');
+  if (!form) return;
+
+  var fields = {
+    ime_prezime: {
+      el: form.elements.ime_prezime,
+      errEl: doc.getElementById('imePrezimeErr'),
+      validate: function (v) {
+        var t = v.trim();
+        if (!t) return 'Molimo unesite ime i prezime.';
+        if (t.length < 2) return 'Ime i prezime su prekratki.';
+        return '';
+      }
+    },
+    email: {
+      el: form.elements.email,
+      errEl: doc.getElementById('emailErr'),
+      validate: function (v) {
+        var t = v.trim();
+        if (!t) return 'Unesite e-mail adresu.';
+        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);
+        return ok ? '' : 'E-mail adresa nije ispravna.';
+      }
+    },
+    adresa: {
+      el: form.elements.adresa,
+      errEl: doc.getElementById('adresaErr'),
+      validate: function (v) {
+        var t = v.trim();
+        if (!t) return 'Unesite adresu za dostavu.';
+        if (t.length < 5) return 'Adresa treba imati barem 5 znakova.';
+        return '';
+      }
+    },
+    mobitel: {
+      el: form.elements.mobitel,
+      errEl: doc.getElementById('mobitelErr'),
+      validate: function (v) {
+        var t = v.trim();
+        if (!t) return 'Unesite kontakt broj.';
+        var ok = /^\+?[0-9 ()\/-]{6,}$/.test(t);
+        return ok ? '' : 'Broj telefona nije ispravan.';
+      }
+    },
+    predmet: {
+      el: form.elements.predmet,
+      errEl: doc.getElementById('predmetErr'),
+      validate: function (v) {
+        return v ? '' : 'Odaberite predmet zahvale.';
+      }
+    },
+    velicina: {
+      el: sizeSelect,
+      errEl: doc.getElementById('velicinaErr'),
+      validate: function (v) {
+        if (predSelect && predSelect.value === 'majica' && !v) {
+          return 'Odaberite veličinu majice.';
+        }
+        return '';
+      }
+    },
+    iznos: {
+      el: form.elements.iznos,
+      errEl: doc.getElementById('iznosErr'),
+      validate: function (v) {
+        var t = v.trim();
+        if (!t) return 'Unesite iznos donacije.';
+        // prihvati i zarez i točku
+        var n = parseFloat(t.replace(',', '.'));
+        if (isNaN(n)) return 'Iznos mora biti broj.';
+        if (n < 1) return 'Minimalni iznos je 1 €.';
+        return '';
+      }
+    }
+  };
+
+  var summary = doc.getElementById('form2-errors');
+
+  function setError(field, msg) {
+    if (!field || !field.el) return true;
+    field.el.setCustomValidity(msg);
+    field.el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    if (field.errEl) {
+      field.errEl.textContent = msg;
+      field.errEl.hidden = !msg;
+    }
+    return !msg;
+  }
+
+  function validateField(field) {
+    return setError(field, field.validate(field.el.value));
+  }
+
+  function updateSummary() {
+    if (!summary) return;
+    var msgs = Object.values(fields)
+      .map(function (f) { return (f.errEl && !f.errEl.hidden) ? '<li>' + f.errEl.textContent + '</li>' : ''; })
+      .filter(Boolean).join('');
+    summary.innerHTML = msgs ? '<ul>' + msgs + '</ul>' : '';
+    summary.hidden = !msgs;
+  }
+
+  // live validation
+  Object.values(fields).forEach(function (f) {
+    if (!f.el) return;
+    var handler = function () { validateField(f); updateSummary(); };
+    f.el.addEventListener('input', handler);
+    f.el.addEventListener('blur', handler);
+    f.el.addEventListener('invalid', function (e) {
+      e.preventDefault();
+      validateField(f);
+      updateSummary();
+    });
+  });
+
+  // keep size requirement in sync with validation
+  if (predSelect) {
+    predSelect.addEventListener('change', function () {
+      validateField(fields.predmet);
+      validateField(fields.velicina);
+      updateSummary();
+    });
+  }
+  if (sizeSelect) {
+    sizeSelect.addEventListener('change', function () {
+      validateField(fields.velicina);
+      updateSummary();
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    var firstBad = null;
+    Object.values(fields).forEach(function (f) {
+      if (!f.el) return;
+      var ok = validateField(f);
+      if (!ok && !firstBad) firstBad = f.el;
+    });
+    if (firstBad) {
+      e.preventDefault();
+      updateSummary();
+      firstBad.focus({ preventScroll: true });
+      firstBad.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+    // else: submit proceeds to Formspree
+  });
 })();
 </script>
+
