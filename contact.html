@@ -17,62 +17,88 @@ permalink: /kontakt/
     </ul>
   </section>
 
-  <section class="box">
-    <header class="major">
-      <h3>Kontaktni obrazac</h3>
-    </header>
-    <form id="kontakt-form" method="post" action="https://formspree.io/f/your-id-here" novalidate>
-      <div id="form-errors" class="form-errors" role="alert" aria-live="polite" hidden></div>
+<section class="box">
+  <header class="major">
+    <h3>Kontaktni obrazac</h3>
+  </header>
 
-      <div class="row gtr-50 gtr-uniform">
-        <div class="col-6 col-12-mobilep">
-          <input type="text" name="ime" id="ime" placeholder="Ime i prezime" required aria-describedby="imeErr" />
-          <small class="field-error" id="imeErr" hidden></small>
-        </div>
+  <form id="kontakt-form"
+        name="kontakt"
+        method="post"
+        action="/hvala/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        accept-charset="UTF-8"
+        novalidate>
 
-        <div class="col-6 col-12-mobilep">
-          <input type="email" name="email" id="email" placeholder="E-mail adresa" required aria-describedby="emailErr" />
-          <small class="field-error" id="emailErr" hidden></small>
-        </div>
-
-        <div class="col-6 col-12-mobilep">
-          <input type="tel" name="telefon" id="telefon" placeholder="Kontakt telefon"
-                inputmode="tel" pattern="\+?[0-9 ()-]{6,}" aria-describedby="telefonErr" />
-          <small class="field-error" id="telefonErr" hidden></small>
-        </div>
-
-        <div class="col-6 col-12-mobilep">
-          <select name="predmet" id="predmet" required aria-describedby="predmetErr">
-            <option value="">— Odaberite predmet poruke —</option>
-            <option>Prijava člana</option>
-            <option>Terapije</option>
-            <option>Volontiranje</option>
-            <option>Donacija</option>
-            <option>Projekti</option>
-            <option>Suradnja</option>
-            <option>Ostalo</option>
-          </select>
-          <small class="field-error" id="predmetErr" hidden></small>
-        </div>
-
-        <div class="col-12">
-          <textarea name="poruka" id="poruka" placeholder="Vaša poruka" rows="6" required aria-describedby="porukaErr"></textarea>
-          <small class="field-error" id="porukaErr" hidden></small>
-        </div>
-
-        <div class="col-12">
-          <ul class="actions special">
-            <li><input type="submit" value="Pošalji" class="primary" /></li>
-          </ul>
-        </div>
-      </div>
-    </form>
-
-    <p class="small">👉 Poruka će biti poslana na:
-      <a href="mailto:udruga.adonis@gmail.com">udruga.adonis@gmail.com</a>
+    <!-- Netlify wiring -->
+    <input type="hidden" name="form-name" value="kontakt">
+    <p class="visually-hidden">
+      <label>Ne ispunjavati: <input name="bot-field" autocomplete="off"></label>
     </p>
 
-  </section>
+    <div id="form-errors" class="form-errors" role="alert" aria-live="polite" hidden></div>
+
+    <div class="row gtr-50 gtr-uniform">
+      <div class="col-6 col-12-mobilep">
+        <label class="visually-hidden" for="ime">Ime i prezime</label>
+        <input type="text" name="ime" id="ime"
+               placeholder="Ime i prezime" required
+               autocomplete="name" aria-describedby="imeErr" />
+        <small class="field-error" id="imeErr" hidden></small>
+      </div>
+
+      <div class="col-6 col-12-mobilep">
+        <label class="visually-hidden" for="email">E-mail adresa</label>
+        <input type="email" name="email" id="email"
+               placeholder="E-mail adresa" required
+               autocomplete="email" aria-describedby="emailErr" />
+        <small class="field-error" id="emailErr" hidden></small>
+      </div>
+
+      <div class="col-6 col-12-mobilep">
+        <label class="visually-hidden" for="telefon">Kontakt telefon</label>
+        <input type="tel" name="telefon" id="telefon"
+               placeholder="Kontakt telefon"
+               inputmode="tel" autocomplete="tel"
+               pattern="\+?[0-9 ()-]{6,}" aria-describedby="telefonErr" />
+        <small class="field-error" id="telefonErr" hidden></small>
+      </div>
+
+      <div class="col-6 col-12-mobilep">
+        <label class="visually-hidden" for="predmet">Predmet poruke</label>
+        <select name="predmet" id="predmet" required aria-describedby="predmetErr">
+          <option value="">— Odaberite predmet poruke —</option>
+          <option>Prijava člana</option>
+          <option>Terapije</option>
+          <option>Volontiranje</option>
+          <option>Donacija</option>
+          <option>Projekti</option>
+          <option>Suradnja</option>
+          <option>Ostalo</option>
+        </select>
+        <small class="field-error" id="predmetErr" hidden></small>
+      </div>
+
+      <div class="col-12">
+        <label class="visually-hidden" for="poruka">Vaša poruka</label>
+        <textarea name="poruka" id="poruka" placeholder="Vaša poruka" rows="6" required aria-describedby="porukaErr"></textarea>
+        <small class="field-error" id="porukaErr" hidden></small>
+      </div>
+
+      <div class="col-12">
+        <ul class="actions special">
+          <li><input type="submit" value="Pošalji" class="primary" /></li>
+        </ul>
+      </div>
+    </div>
+  </form>
+
+  <p class="small">👉 Poruka će biti poslana na:
+    <a href="mailto:udruga.adonis@gmail.com">udruga.adonis@gmail.com</a>
+  </p>
+
+</section>
 <script>
 (function () {
   const form = document.getElementById('kontakt-form');
