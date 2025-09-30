@@ -48,10 +48,8 @@ permalink: /prijavnice/
 
 <script>
 (function() {
-  // Base path for PDFs (GitHub Pages safe)
   var BASE = "{{ '/assets/prijavnice/' | url }}";
 
-  // Clean filenames + friendly labels
   var FILES = [
     { file: "PRIJAVNICA-za-clanstvo-i-terapije.pdf", label: "Prijavnica / Članstvo i terapije" },
     { file: "PRIJAVNICA-i-mi-mozemo-biti-vatrogasci.pdf", label: "Prijavnica / I ja želim biti vatrogasac" },
@@ -85,7 +83,7 @@ permalink: /prijavnice/
     var a = document.createElement("a");
     a.href = buildUrl(item.file);
     a.textContent = item.label;
-    a.setAttribute("download", ""); // suggest download
+    a.setAttribute("download", "");
     li.appendChild(a);
     list.appendChild(li);
   });
@@ -100,10 +98,9 @@ window.servePdf = function(e) {
 
   const url = buildUrl(file);
 
-  // Create a hidden download link
   const link = document.createElement('a');
   link.href = url;
-  link.download = file; // Forces download
+  link.download = file;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
