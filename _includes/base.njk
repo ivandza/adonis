@@ -4,9 +4,21 @@
     <title>{{ title }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
+    <meta name="description" content="{{ description | default('Humanitarna udruga ADONIS – projekti, događanja i podrška djeci i mladima.') | striptags }}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url | url }}">
+    <meta name="robots" content="{{ robots | default('index,follow') }}">
     <!-- Make all relative URLs resolve under the pathPrefix -->
     <base href="{{ '/' | url }}">
+    <meta property="og:locale" content="hr_HR">
+    <meta property="og:site_name" content="HU Adonis">
+    <meta property="og:type" content="{{ ogType | default('website') }}">
+    <meta property="og:title" content="{{ ogTitle | default(title) }}">
+    <meta property="og:description" content="{{ ogDescription | default(description) | striptags }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url | url }}">
+    {% if image %}
+      <meta property="og:image" content="{{ site.url }}{{ image | url }}">
+      <meta property="og:image:alt" content="{{ imageAlt | default(title) }}">
+    {% endif %}
 
     <!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">

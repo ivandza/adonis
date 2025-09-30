@@ -168,36 +168,64 @@ permalink: /darovi-s-pricom/
       <p>Ispunite podatke i dovršite uplatu. Nakon uplate stiže potvrda e-poštom vama i udruzi.</p>
     </header>
 
-  <form id="donacije-form" method="post" action="https://formspree.io/f/your-id-here" novalidate>
+<form id="donacije-form"
+      name="donacije"
+      method="post"
+      action="/hvala/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      accept-charset="UTF-8"
+      novalidate>
+
+  <!-- Netlify wiring -->
+  <input type="hidden" name="form-name" value="donacije">
+  <p class="visually-hidden">
+    <label>Ne ispunjavati: <input name="bot-field" autocomplete="off"></label>
+  </p>
+
+  <!-- Global form error area -->
   <div id="form2-errors" class="form-errors" role="alert" aria-live="polite" hidden></div>
 
   <div class="row gtr-50 gtr-uniform">
     <div class="col-6 col-12-mobilep">
+      <label class="visually-hidden" for="ime_prezime">Ime i prezime</label>
       <input type="text" name="ime_prezime" id="ime_prezime"
-             placeholder="Ime i prezime" required aria-describedby="imePrezimeErr" />
+             placeholder="Ime i prezime" required
+             autocomplete="name"
+             aria-describedby="imePrezimeErr" />
       <small class="field-error" id="imePrezimeErr" hidden></small>
     </div>
 
     <div class="col-6 col-12-mobilep">
+      <label class="visually-hidden" for="email">E-mail adresa</label>
       <input type="email" name="email" id="email"
-             placeholder="E-mail adresa" required aria-describedby="emailErr" />
+             placeholder="E-mail adresa" required
+             autocomplete="email"
+             aria-describedby="emailErr" />
       <small class="field-error" id="emailErr" hidden></small>
     </div>
 
     <div class="col-6 col-12-mobilep">
+      <label class="visually-hidden" for="adresa">Adresa za dostavu</label>
       <input type="text" name="adresa" id="adresa"
-             placeholder="Adresa za dostavu" required aria-describedby="adresaErr" />
+             placeholder="Adresa za dostavu" required
+             autocomplete="street-address"
+             aria-describedby="adresaErr" />
       <small class="field-error" id="adresaErr" hidden></small>
     </div>
 
     <div class="col-6 col-12-mobilep">
+      <label class="visually-hidden" for="mobitel">Kontakt broj</label>
       <input type="tel" name="mobitel" id="mobitel"
-             placeholder="Kontakt broj" required aria-describedby="mobitelErr"
-             inputmode="tel" pattern="\+?[0-9 ()\/-]{6,}" />
+             placeholder="Kontakt broj" required
+             inputmode="tel" autocomplete="tel"
+             pattern="^\+?[0-9 ()\/\.-]{6,}$"
+             aria-describedby="mobitelErr" />
       <small class="field-error" id="mobitelErr" hidden></small>
     </div>
 
     <div class="col-6 col-12-mobilep">
+      <label class="visually-hidden" for="predmet">Predmet zahvale</label>
       <select name="predmet" id="predmet" required aria-describedby="predmetErr">
         <option value="">— Odaberite predmet zahvale —</option>
         <option value="poster1">Plakat — Josip Patljak (1)</option>
@@ -214,6 +242,7 @@ permalink: /darovi-s-pricom/
     </div>
 
     <div class="col-6 col-12-mobilep" id="velicine-wrap" style="display:none">
+      <label class="visually-hidden" for="velicina">Veličina majice</label>
       <select name="velicina" id="velicina" aria-describedby="velicinaErr">
         <option value="">— Veličina majice —</option>
         <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
@@ -222,14 +251,17 @@ permalink: /darovi-s-pricom/
     </div>
 
     <div class="col-12">
-      <label for="iznos" class="visually-hidden">Iznos donacije (€)</label>
+      <label class="visually-hidden" for="iznos">Iznos donacije (€)</label>
       <input type="number" name="iznos" id="iznos"
              inputmode="decimal" min="1" step="1"
-             placeholder="Iznos donacije (€)" required aria-describedby="iznosErr" />
+             placeholder="Iznos donacije (€)" required
+             autocomplete="off"
+             aria-describedby="iznosErr" />
       <small class="field-error" id="iznosErr" hidden></small>
     </div>
 
     <div class="col-12">
+      <label class="visually-hidden" for="poruka">Poruka</label>
       <textarea name="poruka" id="poruka" rows="5" placeholder="Poruka (neobavezno)"></textarea>
     </div>
 
@@ -239,6 +271,8 @@ permalink: /darovi-s-pricom/
       </ul>
     </div>
   </div>
+
+  <!-- Helpful metadata -->
   <input type="hidden" name="source" value="Darovi s pričom" />
 </form>
 
@@ -469,7 +503,6 @@ permalink: /darovi-s-pricom/
       firstBad.focus({ preventScroll: true });
       firstBad.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
-    // else: submit proceeds to Formspree
   });
 })();
 </script>
