@@ -116,7 +116,9 @@ Naš cilj je jednostavan:
 
 Ako želite saznati više o mogućnostima uključivanja u *Mozaik razvoja*, dostupnim uslugama i prijavama, javite nam se putem naše kontakt stranice.
 
-*[ KONTAKT ]*
+<a href="{{ '/kontakt/' | url }}">
+Kontakt
+</a>
 
 ---
 
@@ -128,5 +130,8 @@ Svaka donacija pomaže nam da zajedno nastavimo graditi dostupniju i kvalitetnij
 
 *Budite dio Mozaika razvoja.*
 
-*[ DONIRAJ ZA MOZAIK RAZVOJA ]*
+<a href="{{ '/donacije/' | url }}">
+Doniraj za mozaik razvoja
+</a>
+
 
