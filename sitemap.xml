@@ -8,6 +8,10 @@
     <loc>https://udrugaadonis.hr/o-nama</loc>
     <priority>0.8</priority>
   </url>
+    <url>
+    <loc>https://udrugaadonis.hr/mozaik-razvoja</loc>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://udrugaadonis.hr/projekti</loc>
     <priority>0.8</priority>
