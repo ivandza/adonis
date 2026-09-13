@@ -6,8 +6,6 @@ summary: Program namijenjen djeci i mladima do 18 godina kojima je potrebna doda
 cover_image: /images/projekti/mozaik-razvoja-full.png
 ---
 
-# TERAPIJE – MOZAIK RAZVOJA
-
 ### Stručna podrška djeci i mladima do 18 godina
 
 *Mozaik razvoja* je program Humanitarne udruge Adonis usmjeren na pružanje dostupne stručne podrške djeci i mladima do 18 godina te njihovim obiteljima.
@@ -130,8 +128,5 @@ Svaka donacija pomaže nam da zajedno nastavimo graditi dostupniju i kvalitetnij
 
 *Budite dio Mozaika razvoja.*
 
-<a href="{{ '/donacije/' | url }}">
-Doniraj za mozaik razvoja
-</a>
-
+<a href="{{ '/donacije/' | url }}" class="button primary">Doniraj za mozaik razvoja</a>
 
