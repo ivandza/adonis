@@ -3,7 +3,7 @@ layout: layouts/projekt.njk
 title: Terapija - Mozaik razvoja
 permalink: /mozaik-razvoja/
 summary: Program namijenjen djeci i mladima do 18 godina kojima je potrebna dodatna stručna podrška.
-cover_image: /images/projekti/mozaik-razvoja.png
+cover_image: /images/projekti/mozaik-razvoja-full.png
 ---
 
 # TERAPIJE – MOZAIK RAZVOJA
